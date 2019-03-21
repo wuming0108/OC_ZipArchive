@@ -48,6 +48,48 @@ SSZipArchive requires ARC.
 [SSZipArchive unzipFileAtPath:zipPath toDestination:unzipPath];
 ```
 
+
+/**
+ *  SSZipArchive压缩
+ */
+-(void)ssZipArchiveWithFiles
+{
+    //Caches路径
+    NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+　  //zip压缩包保存路径
+    NSString *path = [cachesPath stringByAppendingPathComponent:@"SSZipArchive.zip"];
+    //需要压缩的文件
+    NSArray *filesPath = @[
+                          @"/Users/apple/Desktop/demo/LaunchImage-2-700-568h@2x.png",
+                          @"/Users/apple/Desktop/demo/LaunchImage-2-700@2x.png",
+                          @"/Users/apple/Desktop/demo/LaunchImage-2-800-667h@2x.png",
+                          @"/Users/apple/Desktop/demo/LaunchImage-2-800-Landscape-736h@3x.png"
+                          ];
+    //创建不带密码zip压缩包
+    BOOL isSuccess = [SSZipArchive createZipFileAtPath:path withFilesAtPaths:filesPath];
+    //创建带密码zip压缩包
+    //BOOL isSuccess = [SSZipArchive createZipFileAtPath:path withFilesAtPaths:filesPath withPassword:@"SSZipArchive.zip"];
+}
+
+
+/**
+ *  SSZipArchive压缩
+ */
+-(void)ssZipArchiveWithFolder
+{
+    //Caches路径
+    NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+　　//zip压缩包保存路径
+    NSString *path = [cachesPath stringByAppendingPathComponent:@"SSZipArchive.zip"];
+    //需要压缩的文件夹路径
+    NSString *folderPath = @"/Users/apple/Desktop/demo/";
+    //创建不带密码zip压缩包
+    BOOL isSuccess = [SSZipArchive createZipFileAtPath:path withContentsOfDirectory:folderPath ];
+    //创建带密码zip压缩包
+    //BOOL isSuccess = [SSZipArchive createZipFileAtPath:path withContentsOfDirectory:folderPath withPassword:@"SSZipArchive.zip"];
+}
+
+
 ### Swift
 
 ```swift
